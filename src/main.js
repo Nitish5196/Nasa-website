@@ -1,4 +1,4 @@
-import './style.css';
+import './style.css'; 
 
 const API_KEY = import.meta.env.VITE_NASA_API_KEY;
 const datePicker = document.querySelector("#datepicker");
