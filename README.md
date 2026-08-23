@@ -1,0 +1,1 @@
+HIIII so i made this webpage using CSS JS and HTML , i followed the guide step by step first and then added a loading rocket animation when u first open the webpage and then i added a date randamizer if you cant decide on choosin a date it selects a random date for you ,other than tht it looks similar to the guide cause i rushed to finish this 
