@@ -5,7 +5,7 @@ const datePicker = document.querySelector("#datepicker");
 const randomBtn = document.querySelector("#random-btn");
 const app = document.querySelector("#app");
 const rocketOverlay = document.querySelector("#rocket-overlay");
-
+g
 function triggerRocketLaunch(callback) {
   rocketOverlay.classList.add("launching");
   setTimeout(() => {
