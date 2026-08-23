@@ -2,11 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nasa-webpage</title>
+    <title>NASA </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@900&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div id="controls">
+      <input type="date" id="datepicker" />
+      <button id="random-btn">🪄 Randomizer</button>
+    </div>
+
+    <div id="rocket-overlay">
+    <img src="boom.png" class="rocket" alt="Rocket Launching" />
+    </div>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

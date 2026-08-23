@@ -1,0 +1,152 @@
+body {
+  margin: 0;
+  padding: 2rem 0;
+  min-height: 100vh;
+  position: relative;
+  font-family: 'Trebuchet MS', sans-serif;
+  background-color: rgb(95, 18, 139);
+  color: #ffffff;
+  transition: background-image 0.5s ease-in-out;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(rgba(95, 18, 139, 1), rgba(95, 18, 139, 0)), url('travel.gif');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6;
+  z-index: 1;
+  clip-path: polygon(
+    0 0, 100% 0, 85% 2.5%, 100% 5%, 85% 7.5%, 100% 10%, 85% 12.5%, 100% 15%, 
+    85% 17.5%, 100% 20%, 85% 22.5%, 100% 25%, 85% 27.5%, 100% 30%, 85% 32.5%, 
+    100% 35%, 85% 37.5%, 100% 40%, 85% 42.5%, 100% 45%, 85% 47.5%, 100% 50%, 
+    85% 52.5%, 100% 55%, 85% 57.5%, 100% 60%, 85% 62.5%, 100% 65%, 85% 67.5%, 
+    100% 70%, 85% 72.5%, 100% 75%, 85% 77.5%, 100% 80%, 85% 82.5%, 100% 85%, 
+    85% 87.5%, 100% 90%, 85% 92.5%, 100% 95%, 85% 97.5%, 100% 100%, 0 100%
+  );
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(rgba(95, 18, 139, 1), rgba(95, 18, 139, 0)), url('travel.gif');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6;
+  z-index: 1;
+  clip-path: polygon(
+    100% 0, 0 0, 15% 2.5%, 0 5%, 15% 7.5%, 0 10%, 15% 12.5%, 0 15%, 
+    15% 17.5%, 0 20%, 15% 22.5%, 0 25%, 15% 27.5%, 0 30%, 15% 32.5%, 
+    0 35%, 15% 37.5%, 0 40%, 15% 42.5%, 0 45%, 15% 47.5%, 0 50%, 
+    15% 52.5%, 0 55%, 15% 57.5%, 0 60%, 15% 62.5%, 0 65%, 15% 67.5%, 
+    0 70%, 15% 72.5%, 0 75%, 15% 77.5%, 0 80%, 15% 82.5%, 0 85%, 
+    15% 87.5%, 0 90%, 15% 92.5%, 0 95%, 15% 97.5%, 0 100%, 100% 100%
+  );
+}
+#app {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+img, iframe, video {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  color: #e1d7f1;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-family: 'Black Ops One', cursive;
+  font-size: 0.95rem;
+  color: #e1d7f1;
+  line-height: 1.7;
+  text-align: left;
+}
+@media (max-width: 600px) {
+  body::before,
+  body::after {
+    display: none;
+  }
+}
+#controls {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+#datepicker, #random-btn {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+#random-btn:hover {
+  background: #30363d;
+  transform: scale(1.05);
+}
+
+#rocket-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(13, 17, 23, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#rocket-overlay.launching {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.rocket {
+  font-size: 5rem;
+  transform: translateY(100vh);
+}
+
+#rocket-overlay.launching .rocket {
+  animation: launchRocket 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes launchRocket {
+  0% {
+    transform: translateY(80vh) scale(0.8);
+  }
+  50% {
+    transform: translateY(0vh) scale(1.2);
+  }
+  100% {
+    transform: translateY(-120vh) scale(1);
+  }
+}
