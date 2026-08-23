@@ -116,7 +116,7 @@ p {
   width: 100vw;
   height: 100vh;
   background: rgba(13, 17, 23, 0.95);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 100;
@@ -127,6 +127,7 @@ p {
 
 #rocket-overlay.launching {
   opacity: 1;
+  display: flex;
   pointer-events: all;
 }
 
