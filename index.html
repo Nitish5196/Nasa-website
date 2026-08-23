@@ -1,15 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="/src/style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NASA </title>
+    <title>NASA APOD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css" />
   </head>
-  <script type="module" src="/src/main.js"></script>
   <body>
     <div id="controls">
       <input type="date" id="datepicker" />
@@ -17,9 +16,11 @@
     </div>
 
     <div id="rocket-overlay">
-    <img src="boom.png" class="rocket" alt="Rocket Launching" />
+      <img src="boom.png" class="rocket" alt="Rocket Launching" />
     </div>
+
     <div id="app"></div>
-   <script type="module" src="/src/main.js"></script>
+
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>

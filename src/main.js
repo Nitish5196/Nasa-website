@@ -1,19 +1,23 @@
 import './style.css'; 
 
-const API_KEY = import.meta.env.VITE_NASA_API_KEY;
+const API_KEY = import.meta.env.VITE_NASA_API_KEY || 'DEMO_KEY';
 const datePicker = document.querySelector("#datepicker");
 const randomBtn = document.querySelector("#random-btn");
 const app = document.querySelector("#app");
 const rocketOverlay = document.querySelector("#rocket-overlay");
-g
+
 function triggerRocketLaunch(callback) {
-  rocketOverlay.classList.add("launching");
-  setTimeout(() => {
+  if (rocketOverlay) {
+    rocketOverlay.classList.add("launching");
+    setTimeout(() => {
+      callback();
+    }, 600);
+    setTimeout(() => {
+      rocketOverlay.classList.remove("launching");
+    }, 1200);
+  } else {
     callback();
-  }, 600);
-  setTimeout(() => {
-    rocketOverlay.classList.remove("launching");
-  }, 1200);
+  }
 }
 
 function getRandomDate() {
@@ -24,42 +28,58 @@ function getRandomDate() {
 }
 
 function fetchAPOD(date = "") {
-  app.innerHTML = "<p>loading...</p>";
+  if (app) {
+    app.innerHTML = "<p>Loading NASA APOD data...</p>";
+  }
 
   const dateQuery = date ? `&date=${date}` : "";
   
   fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}${dateQuery}`)
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`NASA API Error (${response.status}: ${response.statusText})`);
+      }
+      return response.json();
+    })
     .then(data => {
       let media;
 
       if (data.media_type === "image") {
         media = `<img src="${data.url}" alt="${data.title}" />`;
-      } else if (data.url.includes("youtube")) {
+      } else if (data.url && data.url.includes("youtube")) {
         media = `<iframe src="${data.url}" width="100%" height="400" frameborder="0" allowfullscreen></iframe>`;
       } else {
         media = `<video src="${data.url}" controls></video>`;
       }
 
-      app.innerHTML = `
-        <h1>${data.title}</h1>
-        ${media}
-        <p>${data.explanation}</p>
-      `;
+      if (app) {
+        app.innerHTML = `
+          <h1>${data.title}</h1>
+          ${media}
+          <p>${data.explanation}</p>
+        `;
+      }
     })
     .catch(err => {
-      app.innerHTML = `<p>Error: ${err.message}</p>`;
+      if (app) {
+        app.innerHTML = `<p style="color: #ff6b6b;">Error: ${err.message}</p>`;
+      }
     });
 }
 
-datePicker.addEventListener("change", (e) => {
-  triggerRocketLaunch(() => fetchAPOD(e.target.value));
-});
+if (datePicker) {
+  datePicker.addEventListener("change", (e) => {
+    triggerRocketLaunch(() => fetchAPOD(e.target.value));
+  });
+}
 
-randomBtn.addEventListener("click", () => {
-  const randomDateStr = getRandomDate();
-  datePicker.value = randomDateStr;
-  triggerRocketLaunch(() => fetchAPOD(randomDateStr));
-});
+if (randomBtn) {
+  randomBtn.addEventListener("click", () => {
+    const randomDateStr = getRandomDate();
+    datePicker.value = randomDateStr;
+    triggerRocketLaunch(() => fetchAPOD(randomDateStr));
+  });
+}
 
+// Initial fetch on page load
 triggerRocketLaunch(() => fetchAPOD());
