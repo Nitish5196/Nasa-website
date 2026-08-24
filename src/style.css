@@ -152,3 +152,7 @@ p {
     transform: translateY(-120vh) scale(1);
   }
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
