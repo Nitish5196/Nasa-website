@@ -16,7 +16,8 @@ body::before {
   left: 0;
   width: 80px;
   height: 100%;
-  background: linear-gradient(rgba(95, 18, 139, 1), rgba(95, 18, 139, 0)), url('travel.gif');
+  background: linear-gradient(rgba(95, 18, 139, 1), rgba(95, 18, 139, 0)), url('/helloo.png');
+
   background-size: cover;
   background-position: center;
   opacity: 0.6;
